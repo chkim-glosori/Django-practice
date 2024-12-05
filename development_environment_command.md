@@ -26,3 +26,9 @@ cd mysite
 python manage.py migrate
 ```
 정확히 이해하지는 못했지만, 데이터베이스를 이용해서 테이블, 필드, 인덱스, 제약 조건을 생성하고 관리할 수 있는 기능을 추가해주는 명령어라고 한다.
+
+## 6. 서버 실행
+```bash
+cd {project_directory}
+python manage.py runserver
+```
