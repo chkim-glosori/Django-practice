@@ -44,3 +44,10 @@ python manage.py startapp {application_name}
 
 ## 8. 애플리케이션 활성화하기
 장고가 애플리케이션을 추적하고 해당 모델에 대해 데이터베이스 테이블을 생성할 수 있또록 하려면 프로젝트에서 blog 애플리케이션을 활성화해야 한다. settings.py 파일에서 INSTALLED_APPS 리스트를 편집하자.
+
+## 9. Super User 생성하기
+관리 사이트를 관리할 사용자를 생성할 수 있다.
+```bash
+python manage.py createsuperuser
+```
+이후 적절히 Username, email, password 를 설정한다.
