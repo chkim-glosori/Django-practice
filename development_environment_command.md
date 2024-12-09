@@ -22,10 +22,14 @@ django-admin startproject {하고_싶은_프로젝트_이름}
 
 ## 5. 데이터베이스 마이그레이션
 ```bash
+## 최초의 경우 모든 데이터베이스 마이그레이션하기 (JPA, ddl-auto : create 느낌)
 cd {project_directory}
 python manage.py migrate
+
+# 특정 모델의 변경 사항을 감지하여 마이그레이션 파일을 생성.
+python manage.py makemigrations {특정 Entity 이름}
 ```
-정확히 이해하지는 못했지만, 데이터베이스를 이용해서 테이블, 필드, 인덱스, 제약 조건을 생성하고 관리할 수 있는 기능을 추가해주는 명령어라고 한다.
+models.py 의 내용을 보고, 테이블과 일치시키는 명령어이다. 필드, 인덱스, 제약 조건 등을 생성하고 관리할 수 있다.
 
 ## 6. 서버 실행
 ```bash
