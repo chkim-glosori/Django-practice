@@ -2,7 +2,10 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-# Create your models here.
+# 관리자 추가
+class PublishedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Post.Status.PUBLISHED)
 
 class Post(models.Model): # Inheritance
 
@@ -26,6 +29,12 @@ class Post(models.Model): # Inheritance
     status = models.CharField(max_length=2,
                               choices=Status.choices,
                               default=Status.DRAFT)
+    
+    # 기본 관리자
+    objects = models.Manager()
+
+    # 커스텀 관리자
+    published = PublishedManager()
 
     class Meta: # 모델 내부에 Meta 클래스를 추가하여, 모델에 대한 메타데이터를 정의함.
         ordering = ['-publish'] # 출시일 역순으로 정렬
