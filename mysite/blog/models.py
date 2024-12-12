@@ -18,7 +18,8 @@ class Post(models.Model): # Inheritance
         PUBLISHED = 'PB', 'Published'
 
     title = models.CharField(max_length=250) # -> VARCHAR : 일반적으로 사용. 띄어쓰기 가능함.
-    slug = models.SlugField(max_length=250) # -> VARCHAR : 소문자 + 하이픈(-)을 사용하는 게 컨벤션. URL 등에 적격
+    slug = models.SlugField(max_length=250, # -> VARCHAR : 소문자 + 하이픈(-)을 사용하는 게 컨벤션. URL 등에 적격
+                            unique_for_date='publish') # unique_for_date 를 사용하면  slug 필드가 게시 필드에 지정된 날짜의 중복을 허용하지 않음.
     # 다대일 관계 정의
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,    # 삭제 되면 같이 삭제 되게
@@ -49,4 +50,7 @@ class Post(models.Model): # Inheritance
     # URL 이름을 이용해서 URL 을 동적으로 만듦.
     def get_absolute_url(self):
         return reverse('blog:post_detail', 
-                       args=[self.id])
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.publish.day,
+                             self.slug])
