@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # 관리자 추가
 class PublishedManager(models.Manager):
@@ -44,3 +45,8 @@ class Post(models.Model): # Inheritance
 
     def __str__(self):
         return self.title
+    
+    # URL 이름을 이용해서 URL 을 동적으로 만듦.
+    def get_absolute_url(self):
+        return reverse('blog:post_detail', 
+                       args=[self.id])
