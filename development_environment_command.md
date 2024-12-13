@@ -22,6 +22,9 @@ django-admin startproject {하고_싶은_프로젝트_이름}
 
 ## 5. 데이터베이스 마이그레이션
 ```bash
+# 마이그레이션 생성
+# python manage.py makemigrations {application_name}
+
 ## 최초의 경우 모든 데이터베이스 마이그레이션하기 (JPA, ddl-auto : create 느낌)
 cd {project_directory}
 python manage.py migrate
