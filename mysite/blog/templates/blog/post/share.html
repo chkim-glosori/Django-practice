@@ -12,7 +12,8 @@
     <h1>Share "{{ post.title }}" by e-mail</h1>
     <form method="post" novalidate>
       {{ form.as_p }}
-      {% csrf_token %}
+      {% csrf_token %} <!-- Django 는 모든 POST 요청에서 CSRF 토큰을 확인한다 -->
+                       <!-- POST 를 통해 제출되는 모든 폼에 csfr_token 태그를 포함해야 한다 -->
       <input type="submit" value="Send e-mail">
     </form>
   {% endif %}
