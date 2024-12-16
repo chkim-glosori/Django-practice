@@ -5,6 +5,15 @@
 python -m venv {원하는_가상환경의_디렉터리_이름} # 10초 이상 걸린다고 생각하기
 ```
 
+## 가상 환경 삭제 후 새로 생성
+```bash
+# 가상 환경 삭제 후 새로 생성
+deactivate  # 현재 가상 환경 비활성화
+rm -rf my_env  # 가상 환경 폴더 삭제 (my_env는 가상 환경 이름)
+python -m venv my_env  # 새로운 가상 환경 생성
+source my_env/bin/activate  # 새로운 가상 환경 활성화
+```
+
 ## 2. 가상 환경 실행하기
 ```bash
 source {가상환경_디렉터리_이름}/bin/activate
@@ -54,3 +63,9 @@ python manage.py startapp {application_name}
 python manage.py createsuperuser
 ```
 이후 적절히 Username, email, password 를 설정한다.
+
+## 10. env 파일 활용하기
+Django 에서 .env 파일에 저장된 값을 가져오기 위해서는 python-decouple 패키지를 사용하는 것이 일반적이다.
+```bash
+pip install python-decouple
+```

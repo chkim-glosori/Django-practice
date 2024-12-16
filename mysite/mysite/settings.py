@@ -12,9 +12,11 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+# .env 파일 활용 위해
+from decouple import config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -27,6 +29,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# SMTP 설정하면서 내가 추가한 내용
+EMAIL_HOST = 'smtp.gmail.com' # SMTP 서버 주소
+EMAIL_HOST_USER = 'kch4643@gmail.com' # 발신자 이메일
+EMAIL_HOST_PASSWORD = config('app_password') # 발신자 이메일 비밀번호, .env 파일 사용
+EMAIL_PORT = 587 # TLS 포트
+EMAIL_USE_TLS = True # TLS 사용
 
 # Application definition
 
