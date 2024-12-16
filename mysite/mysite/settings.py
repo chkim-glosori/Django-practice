@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 
 # SMTP 설정하면서 내가 추가한 내용
 EMAIL_HOST = 'smtp.gmail.com' # SMTP 서버 주소
-EMAIL_HOST_USER = 'kch4643@gmail.com' # 발신자 이메일
+EMAIL_HOST_USER = 'kch4643@gmail.com' # 발신자 이메일 -> 비밀번호랑 같이 가기 때문에 함부로 건들면 안 됨.
 EMAIL_HOST_PASSWORD = config('app_password') # 발신자 이메일 비밀번호, .env 파일 사용
 EMAIL_PORT = 587 # TLS 포트
 EMAIL_USE_TLS = True # TLS 사용

@@ -2,7 +2,7 @@
 
 ## 1. 격리된 환경 만들기
 ```bash
-python -m venv {원하는_가상환경의_디렉터리_이름} # 10초 이상 걸린다고 생각하기
+python3.11 -m venv {원하는_가상환경의_디렉터리_이름} # 10초 이상 걸린다고 생각하기
 ```
 
 ## 가상 환경 삭제 후 새로 생성
@@ -10,7 +10,7 @@ python -m venv {원하는_가상환경의_디렉터리_이름} # 10초 이상 �
 # 가상 환경 삭제 후 새로 생성
 deactivate  # 현재 가상 환경 비활성화
 rm -rf my_env  # 가상 환경 폴더 삭제 (my_env는 가상 환경 이름)
-python -m venv my_env  # 새로운 가상 환경 생성
+python3.11 -m venv my_env  # 새로운 가상 환경 생성
 source my_env/bin/activate  # 새로운 가상 환경 활성화
 ```
 
