@@ -41,7 +41,10 @@ def post_share(request, post_id):
     else:
         form = EmailPostForm() # 템플릿에 비어 있는 폼을 표시하는 데 사용된다.
     
-    return render(request, 'blog/templates/post/share.html', {'post': post, 'form': form, 'sent': sent})
+    # blog/templates/blog/post/share.html 하면 오류가 남. templates 디렉터리까지는 내가 설정해 줬나 봄.
+    return render(request, 'blog/post/share.html', {'post': post,
+                                                    'form': form,
+                                                    'sent': sent})
 
 def post_detail(request, year, month, day, post):
     post = get_object_or_404(Post,
