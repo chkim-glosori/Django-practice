@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
-from .models import Post
-from .forms import EmailPostForm
+from .models import Post, Comment
+from .forms import EmailPostForm, CommentForm
 from django.core.mail import send_mail
+from django.views.decorators.http import require_POST
 
 class PostListView(ListView):
     '''
@@ -12,6 +13,18 @@ class PostListView(ListView):
     context_object_name = 'posts'
     paginate_by = 3
     template_name = 'blog/post/list.html'
+
+def post_detail(request, year, month, day, post):
+    post = get_object_or_404(Post,
+                            status=Post.Status.PUBLISHED,
+                            slug=post,
+                            publish__year=year,
+                            publish__month=month,
+                            publish__day=day)
+
+    return render(request,
+                    'blog/post/detail.html',
+                    {'post': post})
 
 def post_share(request, post_id):
     
@@ -46,14 +59,20 @@ def post_share(request, post_id):
                                                     'form': form,
                                                     'sent': sent})
 
-def post_detail(request, year, month, day, post):
-    post = get_object_or_404(Post,
-                            status=Post.Status.PUBLISHED,
-                            slug=post,
-                            publish__year=year,
-                            publish__month=month,
-                            publish__day=day)
-    
-    return render(request,
-                  'blog/post/detail.html',
-                  {'post': post})
+@require_POST # 이 뷰에는 POST 요청만을 허용하게 함. 
+def post_comment(request, post_id): # 이 두 파라미터가 하는 일 : 
+    post = get_object_or_404(Post, id=post_id, status=Post.Status.PUBLISHED)
+    comment = None
+
+    # 댓글이 달림
+    form = CommentForm(data=request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False) # 데이터베이스에 저장하지 않고 Comment 객체 만들기
+        comment.post = post # Post 가 할당이 되면
+        comment.save() # 그 다음에 save()
+    return render(request, 'blog/post/comment.html',
+                            {
+                                'post': post,
+                                'form': form,
+                                'comment': comment
+                            })
