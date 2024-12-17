@@ -27,8 +27,13 @@ def post_detail(request, year, month, day, post):
         publish__day=day,
     )
 
-    return render(request, "blog/post/detail.html", {"post": post})
-
+    comments = post.comments.filter(active=True) # 활성화된 댓글을 조회하기 위한 QuerySet
+    form = CommentForm()
+    return render(
+        request,
+        "blog/post/detail.html",
+        {"post": post, "comments": comments, "form": form},
+    )
 
 def post_share(request, post_id):
 
