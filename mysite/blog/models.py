@@ -2,16 +2,17 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
-
+from taggit.managers import TaggableManager
 
 # 관리자 추가
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(status=Post.Status.PUBLISHED)
 
-
 # 글
 class Post(models.Model):  # Inheritance
+    
+    tags = TaggableManager()
 
     # List : choices
     # Key : labels
@@ -23,24 +24,31 @@ class Post(models.Model):  # Inheritance
     title = models.CharField(
         max_length=250
     )  # -> VARCHAR : 일반적으로 사용. 띄어쓰기 가능함.
+    
     slug = models.SlugField(
         max_length=250,  # -> VARCHAR : 소문자 + 하이픈(-)을 사용하는 게 컨벤션. URL 등에 적격
         unique_for_date="publish",
     )  # unique_for_date 를 사용하면  slug 필드가 게시 필드에 지정된 날짜의 중복을 허용하지 않음.
+    
     # 다대일 관계 정의
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,  # 삭제 되면 같이 삭제 되게
         related_name="blog_posts",
     )  # User 에서 Post 로의 역방향 관계 명칭 지정.
+    
     body = models.TextField()  # TEXT
+    
     publish = models.DateTimeField(default=timezone.now)
+    
     created = models.DateTimeField(
         auto_now_add=True
-    )  # 객체를 생성할 때 날짜가 자동으로 저장된다.
+    ) # 객체를 생성할 때 날짜가 자동으로 저장된다.
+        
     updated = models.DateTimeField(
         auto_now=True
-    )  # 객체를 저장할 때 날짜가 자동으로 저장된다.
+    ) # 객체를 저장할 때 날짜가 자동으로 저장된다.
+    
     status = models.CharField(
         max_length=2, choices=Status.choices, default=Status.DRAFT
     )
