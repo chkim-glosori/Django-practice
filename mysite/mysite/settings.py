@@ -27,7 +27,7 @@ SECRET_KEY = "django-insecure-s_m-hefsnb2h$_*&$h-%rr@mf%b7b!0s8w5xv=z12*le+a00g0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*'] # 내부 아이피 접근 가능한지 조회 위해
 
 # SMTP 설정하면서 내가 추가한 내용
 EMAIL_HOST = "smtp.gmail.com"  # SMTP 서버 주소
