@@ -69,3 +69,10 @@ Django 에서 .env 파일에 저장된 값을 가져오기 위해서는 python-d
 ```bash
 pip install python-decouple
 ```
+
+google SMTP 서버를 사용하고, app_password 를 저장하기 위해서 .env 파일을 사용했다.
+
+## 11. 태그 기능 관련 서드파티(의존성 개념) 추가하기
+```bash
+pip install django-taggit==3.0.0
+```
