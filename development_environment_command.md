@@ -76,3 +76,8 @@ google SMTP 서버를 사용하고, app_password 를 저장하기 위해서 .env
 ```bash
 pip install django-taggit==3.0.0
 ```
+
+## 12. 파이썬 마크다운 모듈 설치하기
+```bash
+pip install markdown==3.4.1
+```
