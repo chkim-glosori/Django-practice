@@ -82,7 +82,7 @@ pip install django-taggit==3.0.0
 pip install markdown==3.4.1
 ```
 
-### 13. PostgreSQL 설치하기
+## 13. PostgreSQL 설치하기
 ```text
 https://www.postgresql.org/download/
 ```
@@ -94,7 +94,9 @@ https://www.postgresql.org/download/
 - Stack Builder : PostgreSQL 에 추가 기능을 쉽게 설치할 수 있도록 도와주는 도구이다.
 - Command Line Tools : 데이터베이스와 상호작용할 수 있는 명령줄 도구 모음이다. (Terminal)
 
-### 14. 파이썬용 psycopg2 PostgreSQL 설치하기
+## 14. 파이썬용 psycopg2 PostgreSQL 설치하기
 ```bash
 pip install psycopg2-binary==2.9.3
 ```
+
+psycopg2 어댑터는 데이터베이스와의 연결을 관리하고 SQL 쿼리를 실행할 수 있는 기능을 제공하는 드라이버이다.
