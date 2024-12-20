@@ -21,7 +21,7 @@ source {가상환경_디렉터리_이름}/bin/activate
 
 ## 3. pip 를 이용하여 Django install
 ```bash
-pip install Django~=4.1.0 # 2분 이상 걸린다고 생각하기
+pip install Django==4.1.13 # 2분 이상 걸린다고 생각하기
 ```
 
 ## 4. 프로젝트 만들기 (프로젝트 != 애플리케이션)
@@ -96,7 +96,15 @@ https://www.postgresql.org/download/
 
 ## 14. 파이썬용 psycopg2 PostgreSQL 설치하기
 ```bash
+# 1. C 언어로 작성된 확장 모듈을 빌드하거나 설치하려면 Python 개발 패키지가 있어야 함.
+sudo apt update
+sudo apt install python3-dev
+
+# 2. 이건 binary 라서 1번이 필요한 듯함
 pip install psycopg2-binary==2.9.3
+
+# 3. 근데 1번이 지역이 아닌 전역에 깔린 게 문제가 아닌가?
+# 이걸 해결해야 할 것 같음.
 ```
 
 psycopg2 어댑터는 데이터베이스와의 연결을 관리하고 SQL 쿼리를 실행할 수 있는 기능을 제공하는 드라이버이다.
