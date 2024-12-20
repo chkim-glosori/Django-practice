@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .feeds import LastestPostsFeed
 
 app_name = "blog"
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path("<int:post_id>/comment/", views.post_comment, name="post_comment"),
     # 게시글을 태그 별로 나열하기 위해
     path("tag/<slug:tag_slug>/", views.post_list, name="post_list_by_tag"),
+    path("feed/", LastestPostsFeed(), name="post_feed"),
 ]

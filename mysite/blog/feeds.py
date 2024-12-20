@@ -1,0 +1,25 @@
+# 피드에 대한 정의를 내림
+
+import markdown
+
+from django.contrib.syndication.views import Feed
+from django.template.defaultfilters import truncatewords_html
+from django.urls import reverse_lazy
+from .models import Post
+
+class LastestPostsFeed(Feed): # Feed 를 상속 받아서 정의함
+    title = 'My blog'
+    link = reverse_lazy('blog:post_list')
+    description = 'New posts of my blog.'
+    
+    def items(self):
+        return Post.published.all()
+    
+    def item_title(self, item):
+        return super().item_title(item)
+    
+    def item_description(self, item):
+        return truncatewords_html(markdown.markdown(item.body), 30)
+    
+    def item_pubdate(self, item):
+        return item.publish
