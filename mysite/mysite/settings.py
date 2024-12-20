@@ -36,6 +36,8 @@ EMAIL_HOST_PASSWORD = config("app_password")  # 발신자 이메일 비밀번호
 EMAIL_PORT = 587  # TLS 포트
 EMAIL_USE_TLS = True  # TLS 사용
 
+SITE_ID = 1
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,7 +48,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "blog.apps.BlogConfig",
-    'taggit',
+    'taggit',                       # 태그 서드파티
+    'django.contrib.sites',         # 사이트 맵
+    'django.contrib.sitemaps'       # 사이트 맵
 ]
 
 MIDDLEWARE = [
