@@ -81,3 +81,20 @@ pip install django-taggit==3.0.0
 ```bash
 pip install markdown==3.4.1
 ```
+
+### 13. PostgreSQL 설치하기
+```text
+https://www.postgresql.org/download/
+```
+16.6 버전으로 설치했다.
+
+아래 네 개도 같이 설치했다.
+- PostgreSQL Server : PostgreSQL 의 핵심 데이터베이스 서버이다.
+- pgAdmin 4 : PostgreSQL 의 공식 관리 도구이다. MySQL 에서 MySQL Workbench 같은 느낌이다.
+- Stack Builder : PostgreSQL 에 추가 기능을 쉽게 설치할 수 있도록 도와주는 도구이다.
+- Command Line Tools : 데이터베이스와 상호작용할 수 있는 명령줄 도구 모음이다. (Terminal)
+
+### 14. 파이썬용 psycopg2 PostgreSQL 설치하기
+```bash
+pip install psycopg2-binary==2.9.3
+```
